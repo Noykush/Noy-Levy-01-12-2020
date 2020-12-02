@@ -10,7 +10,6 @@ public class LobbyPage {
 
     public Headers headers = new Headers();
     public Texts texts = new Texts();
-    public TxtBoxes txtBoxes = new TxtBoxes();
     public Buttons buttons = new Buttons();
 
     public class Headers{
@@ -37,17 +36,17 @@ public class LobbyPage {
 
         @FindBy(xpath = "//h2/span[text()='רוצים לשמוע עוד?']")
         public WebElement hearMoreHeader;
+
         @FindBy(xpath = "//div[@class='serviceCard__Card-sc-2g56at-0 hNxzDJ']//h3")
         public List<WebElement> helpUHeaderList;
 
-
         @FindBy(xpath = "//section[@class='questionCard__QuestionCard-t08gdg-0 JaKvb']/h4")
         public List<WebElement >answersForAllQuestionsSectionHeaderList;
+
         public Headers(){
             PageFactory.initElements(Builder.driverManager.driver,this);
         }
     }
-
 
     public class Texts {
 
@@ -79,24 +78,6 @@ public class LobbyPage {
         public WebElement phoneContactErrMsg;
 
         public Texts(){
-            PageFactory.initElements(Builder.driverManager.driver,this);
-        }
-    }
-
-    public class TxtBoxes {
-        @FindBy(xpath = "//input[@id='name']")
-        public WebElement nameContactInput;
-
-        @FindBy(xpath = "//input[@id='email']")
-        public WebElement emailContactInput;
-
-        @FindBy(xpath = "//input[@id='company']")
-        public WebElement companyContactInput;
-
-        @FindBy(xpath = "//input[@id='telephone']")
-        public WebElement phoneContactInput;
-
-        public TxtBoxes(){
             PageFactory.initElements(Builder.driverManager.driver,this);
         }
     }

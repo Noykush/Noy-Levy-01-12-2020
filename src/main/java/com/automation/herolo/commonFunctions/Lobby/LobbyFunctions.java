@@ -2,7 +2,6 @@ package com.automation.herolo.commonFunctions.Lobby;
 
 import com.automation.herolo.commonFunctions.General.BasicFunctions;
 import com.automation.herolo.pageObjects.LobbyPage;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -19,7 +18,6 @@ public class LobbyFunctions extends BasicFunctions {
     List<String>helpUDescList = Arrays.asList("אנחנו בונים צוותים המורכבים ממפתחי Full Stack, צד לקוח (React, Angular, Vue), בודקי איכות (ידני ואוטומציה) ומנהלי פרויקטים. בעזרתנו תוכלו להקים במהירות צוות טכנולוגי איכותי וממוקצע.","אנחנו בונים צוות המותאם לפי הצרכים שלכם ודואגים לתהליך הפיתוח מקצה לקצה. מנהלי הפרויקטים שלנו דואגים לנהל את הפרויקט בצורה הנכונה והאפקטיבית ביותר. עובדים בספרינטים ומתודולוגיות Agile.","אנחנו יכולים לשדרג לכם את האתר ו/או האפליקציה שלכם, לדאוג שתהיו מעודכנים עם הטכנולוגיות החדשות ביותר ולבחון את בסיס הקוד יחד איתכם.");
     List<String>answersForAllQuestionHeaderList = Arrays.asList("אנחנו זקוקים לחיזוק והרחבת צוות הפיתוח הקיים, האם זה משהו שאתם יכולים לעזור בו?","האם אתם מספקים רק שירותי פיתוח צד לקוח?", "האם יש לכם ניסיון עם חברות סטארטאפ?" ,"האם המפתחים שלכם עובדים ממקומות אחרים בעולם?","למה כדאי לי לעבוד דווקא איתכם?","איך נוכל להתקדם?");
     List<String>answersForAllQuestionDescList = Arrays.asList("בהחלט. צוות הפיתוח שלנו מונה עשרות מפתחים ובודקי איכות ואנחנו יודעים לעבוד מרחוק או ממשרדי הלקוח.","לא רק. הירולו היא חברת פיתוח מובילה המספקת שירותי פיתוח מקצה לקצה. יש לנו צוות גדול של מפתחים, מנהלי פרויקטים, בודקי איכות (ידני ואוטומציה), ארכיטקטים ומנהלי צוותים. אנחנו כאן לכל פרויקט שלכם." ,"מאז הקמת הירולו ב-2009, ליווינו עשרות חברות סטארטאפ עם פתרונות מיקור חוץ, פיתוח מרחוק או ייעוץ.","הירולו חרתה על דגלה להשאיר את ההייטק בארץ. כל עובדי החברה הם מנוסים, ממוקצעים ותוצרת כחול לבן.","בגלל הניסיון הרב, המוניטין ומתודולוגיית העבודה הייחודית שלנו. אנחנו עוזרים ללקוחותינו להוריד את עומס העבודה ובכך הם חוסכים לעצמם המון זמן וכסף. אנחנו עוזרים להבטיח עמידה בלוחות הזמנים של הפרויקט/המוצר ועוזרים בגיוס של מתכנתים ממוקצעים להרחבת הצוות הקיים.","תחילה, נתאם פגישת היכרות בה נכיר אחד את השני, נבין את הצרכים והיעדים שלכם ונוכל לפרט על תהליך העבודה הנכון ביותר להמשך התהליך.");
-    List<String>emptyInputErrMsgList = Arrays.asList("שדה שם הוא שדה חובה","שדה חברה הוא שדה חובה","שדה אימייל הוא שדה חובה","שדה טלפון הוא שדה חובה");
 
     public LobbyFunctions(LobbyPage pageObjs, WebDriver driver){
         this.pageObjs = pageObjs;
@@ -83,22 +81,19 @@ public class LobbyFunctions extends BasicFunctions {
     }
 
     public void emptyContactInputTest() {
-        int i;
         log.debug(" - - - - - - - - - - - - - - - - Start Test 'B_EmptyInputContactTxtBoxTest - - - - - - - - - - - - - - - -  \n'This Test goal is to Assure that Empty input setting in contact text boxes triggers compilable error messages on screen.");
         Actions actions = new Actions(driver);
         actions.moveToElement(pageObjs.buttons.callUsBtn);
         actions.perform();
-        //check present of popup
         checkAndCLosePopup(pageObjs.buttons.closePopupBtn,driver);
         clickElement(pageObjs.buttons.callUsBtn,driver);
         try {
-            Thread.sleep(1500);
+            Thread.sleep(2500);
         }catch (InterruptedException e){
             log.error(e.getMessage());
         }
         if(pageObjs.texts.contactErrMsgList == null )
             Assert.fail("Failure - There is No any Error Message after fill in text boxes with Empty values!");
-        //check present of popup
         checkAndCLosePopup(pageObjs.buttons.closePopupBtn,driver);
         errMsg += verifyElementVisibility(pageObjs.texts.nameContactErrMsg,driver,"Empty Name Error");
         errMsg += verifyElementVisibility(pageObjs.texts.companyContactErrMsg,driver,"Empty Company Error");
