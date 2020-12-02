@@ -4,12 +4,15 @@ import com.automation.herolo.configure.Builder;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
 import java.util.List;
+
 public class LobbyPage {
 
     public Headers headers = new Headers();
     public Texts texts = new Texts();
+    public TxtBoxes txtBoxes = new TxtBoxes();
+    public Buttons buttons = new Buttons();
+
     public class Headers{
         @FindBy(xpath = "//h2[@class='logo__Text-tdfmt3-3 kTdOgs']")
         public WebElement programYourLanguageHeader;
@@ -59,23 +62,46 @@ public class LobbyPage {
 
         @FindBy(xpath = "//p/span[text()='יחד נבנה את הפתרון המתאים למוצר שלכם.']")
         public WebElement hearMoreDesc2;
+
+        @FindBy(xpath = "//span[@class='commun__ErrorText-zi6nvq-6 bDkbFh']")
+        public List<WebElement> contactErrMsgList;
+
+        public WebElement emailErrMsg;
         public Texts(){
             PageFactory.initElements(Builder.driverManager.driver,this);
         }
     }
 
     public class TxtBoxes {
+        @FindBy(xpath = "//input[@id='name']")
+        public WebElement nameContactInput;
+
+        @FindBy(xpath = "//input[@id='email']")
+        public WebElement emailContactInput;
+
+        @FindBy(xpath = "//input[@id='company']")
+        public WebElement companyContactInput;
+
+        @FindBy(xpath = "//input[@id='telephone']")
+        public WebElement phoneContactInput;
+
         public TxtBoxes(){
             PageFactory.initElements(Builder.driverManager.driver,this);
         }
     }
 
     public class Buttons {
+        @FindBy(xpath = "//a/span[text()='דברו איתנו']")
+        public WebElement callUsBtn;
+
+        @FindBy(xpath = "//span[@class='onUnloadPopup__CloseModalBtn-v34ylr-1 gFThxT' and text()='+']")
+        public WebElement closePopupBtn;
+
         public Buttons(){
             PageFactory.initElements(Builder.driverManager.driver,this);
         }
     }
 
-        @FindBy(xpath = "//div[@id='logom']")
+    @FindBy(xpath = "//div[@id='logom']")
     public WebElement logoObj;
 }

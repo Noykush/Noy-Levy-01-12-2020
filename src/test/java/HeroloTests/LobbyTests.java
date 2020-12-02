@@ -2,15 +2,10 @@ package HeroloTests;
 
 import com.automation.herolo.configure.Builder;
 import com.automation.herolo.commonFunctions.Lobby.LobbyFunctions;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
-import org.springframework.test.context.event.annotation.BeforeTestExecution;
-import org.springframework.test.context.event.annotation.BeforeTestMethod;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 
 public class LobbyTests {
     LobbyFunctions lobbyFunctions;
@@ -23,16 +18,19 @@ public class LobbyTests {
     }
 
     @Test
-    public void validLobbyTextsTest() {
+    public void A_ValidLobbyTextsTest() {
         builder.loginManager.login(builder.driverManager.driver, builder.lobbyObjs.logoObj);
         lobbyFunctions.checkValidTexts();
-       Assert.assertEquals(lobbyFunctions.errMsg, "",lobbyFunctions.errMsg);
+        Assert.assertEquals(lobbyFunctions.errMsg, "",lobbyFunctions.errMsg);
     }
 
     @Test
-    public void invalidTxtBoxInput() {
-
+    public void B_EmptyInputContactTxtBoxTest() {
+        builder.loginManager.login(builder.driverManager.driver, builder.lobbyObjs.logoObj);
+        lobbyFunctions.emptyContactInputTest();
+        Assert.assertEquals(lobbyFunctions.errMsg, "",lobbyFunctions.errMsg);
     }
+
     @AfterTest
     public void finishTest(){
         builder.driverManager.driver.close();
