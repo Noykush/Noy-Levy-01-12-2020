@@ -4,7 +4,6 @@ import com.automation.herolo.commonFunctions.General.BasicFunctions;
 import com.automation.herolo.pageObjects.LobbyPage;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 
@@ -28,11 +27,11 @@ public class LobbyFunctions extends BasicFunctions {
     }
     public void checkValidTexts(){
         log.debug(" - - - - - - - - - - - - - - - - Start Test 'A_ValidLobbyTextsTest - - - - - - - - - - - - - - - -  \n'This Test goal is to Assure Present of All Expected Lobby page Texts.");
-        errMsg += verifyElementVisibility(pageObjs.logoObj,driver);
-        errMsg += verifyElementVisibility(pageObjs.headers.programYourLanguageHeader,driver);
-        errMsg += verifyElementVisibility(pageObjs.headers.weRHeroloHeader,driver);
-        errMsg += verifyElementVisibility(pageObjs.headers.weRHeroloDescObj,driver);
-        errMsg += verifyElementVisibility(pageObjs.headers.helpUMainHeader,driver);
+        errMsg += verifyElementVisibility(pageObjs.logoObj,driver,"Logo Image");
+        errMsg += verifyElementVisibility(pageObjs.headers.programYourLanguageHeader,driver,"Program Your Language Header");
+        errMsg += verifyElementVisibility(pageObjs.headers.weRHeroloHeader,driver,"We Are Herolo Header");
+        errMsg += verifyElementVisibility(pageObjs.headers.weRHeroloDescObj,driver,"Herolo description");
+        errMsg += verifyElementVisibility(pageObjs.headers.helpUMainHeader,driver,"Help You Header");
 
         if(pageObjs.headers.helpUHeaderList ==  null || pageObjs.headers.helpUHeaderList.size() < 3)
             errMsg+="Failure - fails to present'How Could we Help You?' header components Section\n";
@@ -54,9 +53,9 @@ public class LobbyFunctions extends BasicFunctions {
                     errMsg+="Failure - fails to show the Text: " + helpUDescList.get(i)+"\n";
             }
         }
-        errMsg+=verifyElementVisibility(pageObjs.headers.exampleJobjsHeader,driver);
-        errMsg+=verifyElementVisibility(pageObjs.headers.ourClientsHeader,driver);
-        errMsg+=verifyElementVisibility(pageObjs.headers.answersForAllQuestionsMainHeader,driver);
+        errMsg+=verifyElementVisibility(pageObjs.headers.exampleJobjsHeader,driver,"Example Jobs Header");
+        errMsg+=verifyElementVisibility(pageObjs.headers.ourClientsHeader,driver,"Our Clients Header");
+        errMsg+=verifyElementVisibility(pageObjs.headers.answersForAllQuestionsMainHeader,driver,"AnswerForAllQuestions Header");
         if(pageObjs.headers.answersForAllQuestionsSectionHeaderList ==  null || pageObjs.headers.answersForAllQuestionsSectionHeaderList.size() < 6)
             errMsg+="Failure - fails to present'How Could we Help You?' text descriptions components Section\n";
         else {
@@ -78,9 +77,9 @@ public class LobbyFunctions extends BasicFunctions {
                     errMsg+="Failure - fails to show the Text: " + answersForAllQuestionDescList.get(i)+"\n";
             }
         }
-        errMsg+=verifyElementVisibility(pageObjs.headers.hearMoreHeader,driver);
-        errMsg+=verifyElementVisibility(pageObjs.texts.hearMoreDesc1,driver);
-        errMsg+=verifyElementVisibility(pageObjs.texts.hearMoreDesc2,driver);
+        errMsg+=verifyElementVisibility(pageObjs.headers.hearMoreHeader,driver,null);
+        errMsg+=verifyElementVisibility(pageObjs.texts.hearMoreDesc1,driver,null);
+        errMsg+=verifyElementVisibility(pageObjs.texts.hearMoreDesc2,driver,null);
     }
 
     public void emptyContactInputTest() {
@@ -101,15 +100,10 @@ public class LobbyFunctions extends BasicFunctions {
             Assert.fail("Failure - There is No any Error Message after fill in text boxes with Empty values!");
         //check present of popup
         checkAndCLosePopup(pageObjs.buttons.closePopupBtn,driver);
-        for(i = 0; i < pageObjs.texts.contactErrMsgList.size(); i++) {
-            errMsg += verifyElementText(pageObjs.texts.contactErrMsgList.get(i), emptyInputErrMsgList.get(i),driver);
-            checkAndCLosePopup(pageObjs.buttons.closePopupBtn,driver);
-        }
-        //check if all 4 err msg were triggered
-        while (i < emptyInputErrMsgList.size()) {
-            errMsg += "Failure - The Error Message: " + emptyInputErrMsgList.get(i) + " Has NOT displayed on screen!\n";
-            i++;
-        }
+        errMsg += verifyElementVisibility(pageObjs.texts.nameContactErrMsg,driver,"Empty Name Error");
+        errMsg += verifyElementVisibility(pageObjs.texts.companyContactErrMsg,driver,"Empty Company Error");
+        errMsg += verifyElementVisibility(pageObjs.texts.emailContactErrMsg,driver,"Empty Email Error");
+        errMsg += verifyElementVisibility(pageObjs.texts.phoneContactErrMsg,driver,"Empty Phone Error");
     }
 }
 

@@ -5,10 +5,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.Nullable;
+
 public class BasicFunctions  {
     protected final static org.slf4j.Logger log = LoggerFactory.getLogger(BasicFunctions.class);
 
-    protected  String verifyElementVisibility(WebElement element, WebDriver driver){
+    protected  String verifyElementVisibility(WebElement element, WebDriver driver, @Nullable String elementName){
         String reportMsg = "";
         JavascriptExecutor js = (JavascriptExecutor) driver;
         log.debug("Start Method verifyElementVisibility");
@@ -18,7 +20,8 @@ public class BasicFunctions  {
             if (element.isDisplayed()) {
                 js.executeScript("arguments[0].setAttribute('style', 'border: 2px solid yellow;');", element);
                 Thread.sleep(1500);
-                log.debug("PASS - Element " + element.getText() + " is Present!\n");
+                String reportName = element.getText().isEmpty() ? (elementName != null?elementName:""):element.getText();
+                log.debug("PASS - Element " + reportName+ " is Present!\n");
             } else
                 reportMsg = "Failure - Element is NOT Present!";
          }catch (Exception e){
@@ -38,7 +41,7 @@ public class BasicFunctions  {
                 js.executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", element);
                 Thread.sleep(1500);
                 if (element.getText().equals(txt))
-                    log.debug("PASS - Element " + element.getText() + " is Present!\n");
+                    log.debug("PASS - The Text " + element.getText() + " is Present in Element!\n");
            } else
                     reportMsg = "Failure - The Text: " + txt + " is NOT Present in the element\n!";
         }catch (Exception e){

@@ -66,7 +66,18 @@ public class LobbyPage {
         @FindBy(xpath = "//span[@class='commun__ErrorText-zi6nvq-6 bDkbFh']")
         public List<WebElement> contactErrMsgList;
 
-        public WebElement emailErrMsg;
+        @FindBy(xpath = "//span[text()='שדה שם הוא שדה חובה']")
+        public WebElement nameContactErrMsg;
+
+        @FindBy(xpath = "//span[text()='שדה חברה הוא שדה חובה']")
+        public WebElement companyContactErrMsg;
+
+        @FindBy(xpath = "//span[text()='שדה אימייל הוא שדה חובה']")
+        public WebElement emailContactErrMsg;
+
+        @FindBy(xpath = "//span[text()='שדה טלפון הוא שדה חובה']")
+        public WebElement phoneContactErrMsg;
+
         public Texts(){
             PageFactory.initElements(Builder.driverManager.driver,this);
         }
