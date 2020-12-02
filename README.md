@@ -1,7 +1,7 @@
 # Noy-Levy-01-12-2020
 This is An Automation Project For Herolo Website.
 
-The included Test Scenariosare:
+The included Test Scenarios are:
 1. A_ValidLobbyTextsTest - Verify that all expected texts of lobby page are displayed successfully.
 2. B_EmptyInputContactTxtBoxTest - Verify that compilable Error messages are triggered when text boxes are been filled in with Empty values.
 
