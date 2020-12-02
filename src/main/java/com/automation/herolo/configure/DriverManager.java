@@ -1,6 +1,10 @@
 package com.automation.herolo.configure;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DriverManager extends SetupConfig {
     public ChromeDriver driver;
@@ -22,5 +26,10 @@ public class DriverManager extends SetupConfig {
         }catch (Exception e){
             System.out.println("Fails to initialise browser - class DriverManager"+ e.getStackTrace());
         }
+    }
+
+    public void login(WebDriver driver, WebElement element){
+        driver.get(URL);
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(element));
     }
 }

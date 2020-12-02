@@ -19,14 +19,14 @@ public class LobbyTests {
 
     @Test
     public void A_ValidLobbyTextsTest() {
-        builder.loginManager.login(builder.driverManager.driver, builder.lobbyObjs.logoObj);
+        builder.driverManager.login(builder.driverManager.driver, builder.lobbyObjs.logoObj);
         lobbyFunctions.checkValidTexts();
         Assert.assertEquals(lobbyFunctions.errMsg, "",lobbyFunctions.errMsg);
     }
 
     @Test
     public void B_EmptyInputContactTxtBoxTest() {
-        builder.loginManager.login(builder.driverManager.driver, builder.lobbyObjs.logoObj);
+        builder.driverManager.login(builder.driverManager.driver, builder.lobbyObjs.logoObj);
         lobbyFunctions.emptyContactInputTest();
         Assert.assertEquals(lobbyFunctions.errMsg, "",lobbyFunctions.errMsg);
     }

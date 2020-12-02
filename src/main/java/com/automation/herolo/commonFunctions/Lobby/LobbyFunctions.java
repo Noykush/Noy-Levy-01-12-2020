@@ -103,6 +103,7 @@ public class LobbyFunctions extends BasicFunctions {
         checkAndCLosePopup(pageObjs.buttons.closePopupBtn,driver);
         for(i = 0; i < pageObjs.texts.contactErrMsgList.size(); i++) {
             errMsg += verifyElementText(pageObjs.texts.contactErrMsgList.get(i), emptyInputErrMsgList.get(i),driver);
+            checkAndCLosePopup(pageObjs.buttons.closePopupBtn,driver);
         }
         //check if all 4 err msg were triggered
         while (i < emptyInputErrMsgList.size()) {
